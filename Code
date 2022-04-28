@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List Example</title>
+    <style>
+        * {
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align:center;
+            font-weight: 400;
+            box-sizing: border-box;
+        }
+      body {
+        background-color: #000;
+        color:#fff;
+      }
+        ul {
+            margin: 20px auto;
+            text-align: center;
+            display: block;
+        }
+
+      li {
+        margin: 10px auto;
+      }
+
+      li button {
+        font-size: 14px;
+        margin: 10px 40px;
+        padding:10px;
+        color: #fff;
+        background-color:lightcoral;
+        border:none;
+        box-shadow: 5px 5px lightseagreen;
+        transition:.4s;
+      }
+      li button:hover {
+        cursor:pointer;
+        transform: skewX(1.2);
+        color:#fff;
+        box-shadow: none;
+        transition:.4s;
+      }
+
+      h1 {
+          font-size:48px;
+          color:#fff;
+          background-color:lightseagreen;
+          padding:20px;
+          text-transform: uppercase;
+          text-shadow: 4px 4px 10px #000;
+      }
+
+      .btn {
+            background-color:lightcoral;
+            margin:20px 20px;
+            color:#fff;
+            padding:15px;
+            border:none;
+            transition:.3s;
+            font-size: 20px;
+      }
+      .btn:hover {
+          cursor: pointer;
+          transform: translateY(-5px);
+          box-shadow: 10px 10px lightseagreen;
+          transition:.3s;
+      }
+      .btn:active {
+        transform:scale(.98);
+          box-shadow: 2px 2px 5px lightslategray;
+          background-color:lightcoral;
+      }
+      .btnThree {
+        font-size: 16px;
+        margin: 0 20px;
+        padding:10px;
+        color:#fff;
+        background-color:lightseagreen;
+        border:none;
+        transition:.4s;
+      }
+      .btnThree:hover {
+        cursor:pointer;
+        box-shadow:-5px -5px lightcoral;
+        transform:scale(.95) ;
+      }
+      
+      .form {
+          display: block;
+          margin:120px auto;
+          max-width: 800px;
+      }
+
+    </style>
+
+    <!---HTML--->
+
+  </head>
+
+
+  <body>
+
+    <h1>A simple shopping list</h1>
+
+    <div class="form">
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item" required>
+      <button>Add Item</button>
+      <button class="btnThree">Delete All</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <!--- Javascript --->
+
+
+    <script>
+
+        const list = document.querySelector('ul');
+        const input  = document.querySelector('input');
+        const btn =  document.querySelector('button');
+        const btnThree =  document.querySelector('.btnThree');
+
+
+        btn.setAttribute('class', 'btn')
+
+        btn.addEventListener('click', () => {
+            
+            const inputValue = input.value;
+            input.value = '';
+
+            const listItem = document.createElement('li');
+            const span = document.createElement('span');
+            const btnTwo = document.createElement('button');
+
+            listItem.appendChild(span);
+            span.textContent = inputValue;
+            btnTwo.textContent = 'Delete';
+            listItem.appendChild(btnTwo);
+            list.appendChild(listItem);
+
+            btnTwo.addEventListener ('click', () => {
+                list.removeChild(listItem);
+            });
+
+            btnThree.addEventListener ('click', () => {
+          listItem.remove();
+        });
+            input.focus();
+        });
+
+    </script>
+  </body>
+</html>
